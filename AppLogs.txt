@@ -1,0 +1,40 @@
+[FILE] 16/06/2025 20:43:34: Página de Logs acessada.
+[FILE] 16/06/2025 20:43:41: Nova Reserva criada para o Cliente 'João Silva' - Pacote 'Praias do Nordeste' em 16/06/2025 20:43:41.
+[FILE] 16/06/2025 20:43:54: Nova Reserva criada para o Cliente 'João Silva' - Pacote 'Praias do Nordeste' em 16/06/2025 20:43:54.
+[FILE] 16/06/2025 21:21:25: Nova reserva criada com sucesso! Cliente: 'Caio Fabio', Pacote: 'Praias do Nordeste', Data da Reserva: 23/06/2025. Vagas restantes: 4.
+[FILE] 16/06/2025 21:38:42: Nova reserva criada com sucesso! Cliente: 'Caio Fabio', Pacote: 'Praias do Nordeste', Data da Reserva: 23/06/2025. Vagas restantes: 4.
+[FILE] 16/06/2025 21:38:55: Nova reserva criada com sucesso! Cliente: 'Caio Silva', Pacote: 'Serra Gaúcha Aventura', Data da Reserva: 23/06/2025. Vagas restantes: 0.
+[FILE] 16/06/2025 21:39:03: Tentativa de reserva falhou: Pacote sem vagas. Cliente: 'Caio Silva Rod', Pacote: 'Serra Gaúcha Aventura'.
+[FILE] 16/06/2025 21:46:55: Tentativa de reserva falhou (Capacidade máxima atingida): Cliente: 'Caio Fabio', Pacote: 'Pacote Cheio'.
+[FILE] 16/06/2025 21:47:12: Nova reserva criada com sucesso! Cliente: 'Caio Fabio', Pacote: 'Serra Gaúcha Aventura', Data da Reserva: 23/06/2025. Vagas restantes: 0.
+[FILE] 16/06/2025 21:47:12: [ALERTA - CAPACIDADE ATINGIDA] Pacote 'Serra Gaúcha Aventura' ATINGIU OU EXCEDEU A CAPACIDADE MÁXIMA de 5 participantes. Total atual: 5.
+[FILE] 16/06/2025 21:47:23: Tentativa de reserva falhou (Capacidade máxima atingida): Cliente: 'Caio Fabio', Pacote: 'Serra Gaúcha Aventura'.
+[FILE] 16/06/2025 21:47:37: Nova reserva criada com sucesso! Cliente: 'Caio Silva', Pacote: 'Praias do Nordeste', Data da Reserva: 23/06/2025. Vagas restantes: 4.
+[FILE] 16/06/2025 21:47:47: Tentativa de reserva falhou (Reserva duplicada): Cliente: 'Caio Silva', Pacote: 'Praias do Nordeste', Data: 23/06/2025.
+[FILE] 17/06/2025 10:54:26: Nova reserva criada com sucesso! Cliente: 'Caio Fabio', Pacote: 'Praias do Nordeste', Data da Reserva: 24/06/2025. Vagas restantes: 4.
+[FILE] 17/06/2025 11:43:44: Nova reserva criada com sucesso! Cliente: 'Caio Silva Rod', Pacote: 'Praias do Nordeste', Data da Reserva: 24/06/2025. Vagas restantes: 4.
+[FILE] 17/06/2025 11:53:19: Nova reserva criada com sucesso! Cliente: 'Caio Fabio', Pacote: 'Praias do Nordeste', Data da Reserva: 24/06/2025. Vagas restantes: 3.
+[FILE] 17/06/2025 11:53:22: Nova reserva criada com sucesso! Cliente: 'Caio Fabio', Pacote: 'Serra Gaúcha Aventura', Data da Reserva: 24/06/2025. Vagas restantes: 0.
+[FILE] 17/06/2025 11:53:22: [ALERTA - CAPACIDADE ATINGIDA] Pacote 'Serra Gaúcha Aventura' ATINGIU OU EXCEDEU A CAPACIDADE MÁXIMA de 5 participantes. Total atual: 5.
+[FILE] 17/06/2025 11:53:26: Tentativa de reserva falhou (Data passada): Cliente: 'Caio Fabio', Pacote: 'Viagem no Tempo - Ruínas'.
+[FILE] 17/06/2025 11:53:33: Tentativa de reserva falhou (Reserva duplicada): Cliente: 'Caio Silva Rod', Pacote: 'Praias do Nordeste', Data: 24/06/2025.
+[FILE] 17/06/2025 11:53:35: Tentativa de reserva falhou (Capacidade máxima atingida): Cliente: 'Caio Silva Rod', Pacote: 'Serra Gaúcha Aventura'.
+[FILE] 17/06/2025 12:12:43: [DEBUG - VALIDATION FAILED] Erros: [Invalid] The SelectedFile field is required. 
+[FILE] 17/06/2025 12:13:13: [DEBUG - VALIDATION FAILED] Erros: [Invalid] The SelectedFile field is required. 
+[FILE] 17/06/2025 12:13:40: [DEBUG - VALIDATION FAILED] Erros: [Invalid] The SelectedFile field is required. 
+[FILE] 17/06/2025 12:16:57: [DEBUG - VALIDATION FAILED] Erros: [Invalid] The SelectedFile field is required. 
+[FILE] 17/06/2025 12:18:30: [DEBUG - VALIDATION FAILED] Erros: The SelectedFile field is required. 
+[FILE] 17/06/2025 12:18:35: [DEBUG - VALIDATION FAILED] Erros: The SelectedFile field is required. 
+[FILE] 17/06/2025 12:21:34: [DEBUG - VALIDATION FAILED] Erros: The SelectedFile field is required. 
+[FILE] 17/06/2025 12:22:56: [DEBUG - VALIDATION FAILED] Erros: The SelectedFile field is required. 
+[FILE] 17/06/2025 12:23:00: [DEBUG - VALIDATION FAILED] Erros: The SelectedFile field is required. 
+[FILE] 17/06/2025 12:24:35: [DEBUG - VALIDATION FAILED] Erros: The SelectedFile field is required. 
+[FILE] 17/06/2025 12:27:54: [INFO] Anotação 'note_20250617_122754_a342aca5.txt' salva com sucesso.
+[FILE] 17/06/2025 12:28:29: [INFO] Anotação 'note_20250617_122829_385fa921.txt' salva com sucesso.
+[FILE] 17/06/2025 20:42:38: [INFO] Anotação 'note_20250617_204238_5148c375.txt' salva com sucesso.
+[FILE] 17/06/2025 20:43:07: Nova reserva criada com sucesso! Cliente: 'Caio Silva', Pacote: 'Praias do Nordeste', Data da Reserva: 24/06/2025. Vagas restantes: 4.
+[FILE] 17/06/2025 20:43:34: Nova reserva criada com sucesso! Cliente: 'Caio Silva Rod', Pacote: 'Praias do Nordeste', Data da Reserva: 24/06/2025. Vagas restantes: 3.
+[FILE] 17/06/2025 22:13:26: Nova reserva criada com sucesso! Cliente: 'Caio Fabio', Pacote: 'Praias do Nordeste', Data da Reserva: 10/12/2025. Vagas restantes: 4.
+[FILE] 17/06/2025 22:13:29: Tentativa de reserva falhou (Reserva duplicada): Cliente: 'Caio Fabio', Pacote: 'Praias do Nordeste', Data: 10/12/2025.
+[FILE] 17/06/2025 23:13:48: Nova reserva criada com sucesso! Cliente: 'Caio Fabio', Pacote: 'Serra Gaúcha Aventura', Data da Reserva: 24/06/2025. Vagas restantes: 0.
+[FILE] 17/06/2025 23:13:48: [ALERTA - CAPACIDADE ATINGIDA] Pacote 'Serra Gaúcha Aventura' ATINGIU OU EXCEDEU A CAPACIDADE MÁXIMA de 5 participantes. Total atual: 5.

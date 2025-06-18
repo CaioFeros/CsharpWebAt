@@ -1,0 +1,67 @@
+﻿@page
+@model CsharpWebAt.Pages.Reservas.CreateModel
+@{
+    ViewData["Title"] = "Criar Nova Reserva";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4 text-center">Criar Nova Reserva</h1>
+    <p class="text-center text-muted">Preencha os dados abaixo para registrar uma nova reserva de pacote turístico.</p>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Detalhes da Reserva</h5>
+            <form method="post" asp-page-handler="CreateReservation">
+                <div class="mb-3">
+                    <label for="NomeClienteInput" class="form-label">Nome do Cliente:</label>
+                    <input type="text" class="form-control rounded-3" id="NomeClienteInput" asp-for="NomeClienteInput" required placeholder="Ex: Maria Souza">
+                    <span asp-validation-for="NomeClienteInput" class="text-danger d-block mt-1"></span> @* Adicionado para exibir a mensagem de validação *@
+                </div>
+                <div class="mb-3">
+                    <label for="TituloPacoteInput" class="form-label">Pacote Turístico:</label>
+                    <select class="form-select rounded-3" id="TituloPacoteInput" asp-for="TituloPacoteInput" required>
+                        <option value="">Selecione um Pacote</option>
+                        <option value="Praias do Nordeste">Praias do Nordeste (Vagas: 5/10)</option>
+                        <option value="Serra Gaúcha Aventura">Serra Gaúcha Aventura (Vagas: 4/5)</option>
+                        <option value="Pacote Cheio">Pacote Cheio (Vagas: 2/2)</option>
+                        <option value="Viagem no Tempo - Ruínas">Viagem no Tempo - Ruínas (Data Passada)</option>
+                    </select>
+                    <small class="form-text text-muted">
+                        *Dados simulados: Praias do Nordeste (5/10), Serra Gaúcha Aventura (4/5), Pacote Cheio (2/2 - sem vagas), Viagem no Tempo - Ruínas (data passada).
+                    </small>
+                    <span asp-validation-for="TituloPacoteInput" class="text-danger d-block mt-1"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="DataReservaInput" class="form-label">Data da Reserva:</label>
+                    <input type="date" class="form-control rounded-3" id="DataReservaInput" asp-for="DataReservaInput" required>
+                    <small class="form-text text-muted">A data da reserva deve ser futura para pacotes válidos.</small>
+                    <span asp-validation-for="DataReservaInput" class="text-danger d-block mt-1"></span>
+                </div>
+                <button type="submit" class="btn btn-primary rounded-pill w-100 py-2 mt-3">
+                    <i class="bi bi-bookmark-plus-fill me-2"></i> Criar Reserva
+                </button>
+            </form>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert @(Model.StatusMessage.Contains("sucesso") ? "alert-success" : "alert-warning") mt-3 rounded-3" role="alert">
+            <h4 class="alert-heading">Resultado da Operação:</h4>
+            <p>@Model.StatusMessage</p>
+            <hr>
+            <p class="mb-0">Verifique a página de logs para detalhes completos do sistema.</p>
+        </div>
+    }
+
+    <h2 class="mt-5 mb-3 text-center">Informações Importantes:</h2>
+    <div class="alert alert-info rounded-3">
+        <p class="mb-1">As reservas são simuladas e não persistem após o reinício da aplicação.</p>
+        <p class="mb-0">Verifique a página <a href="/Logs" class="alert-link">Logs</a> para ver todos os registros detalhados das operações, incluindo alertas de capacidade.</p>
+    </div>
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <partial name="_ValidationScriptsPartial" /> @* Garante que os scripts de validação do cliente sejam carregados *@
+}

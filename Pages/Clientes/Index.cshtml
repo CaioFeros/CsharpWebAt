@@ -1,0 +1,105 @@
+﻿@page
+@model CsharpWebAt.Pages.Clientes.IndexModel
+
+@{
+    ViewData["Title"] = "Clientes";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4 text-center">Gerenciamento de Clientes</h1>
+
+    <p class="text-center">
+        <a asp-page="Create" class="btn btn-success rounded-pill px-4 py-2">
+            <i class="bi bi-plus-circle-fill me-2"></i> Adicionar Novo Cliente
+        </a>
+    </p>
+
+    <p class="text-center mt-2">
+        <a asp-page="./Index" asp-route-showDeleted="@(Request.Query["showDeleted"] == "true" ? "false" : "true")" class="btn btn-link">
+            @(Request.Query["showDeleted"] == "true" ? "Ocultar Clientes Excluídos" : "Mostrar Clientes Excluídos")
+        </a>
+    </p>
+    
+
+    @if (Model.Cliente.Any())
+    {
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Cliente[0].Nome)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Cliente[0].Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Cliente[0].DeletedAt)
+                                </th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Cliente)
+                            {
+                                <tr class="@(item.DeletedAt.HasValue ? "table-danger" : "")">
+                                    @* Destaca linhas de clientes excluídos *@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nome)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @if (item.DeletedAt.HasValue)
+                                        {
+                                            @Html.DisplayFor(modelItem => item.DeletedAt)
+                                            <span class="badge bg-danger ms-2">Clientes Excluído</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success">Ativo</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (!item.DeletedAt.HasValue)
+                                        {
+                                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm rounded-pill me-1" title="Editar">
+                                                <i class="bi bi-pencil-fill"></i> Editar
+                                            </a>
+                                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm rounded-pill me-1" title="Detalhes">
+                                                <i class="bi bi-info-circle-fill"></i> Detalhes
+                                            </a>
+                                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm rounded-pill" title="Excluir">
+                                                <i class="bi bi-trash-fill"></i> Excluir
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-muted">Inativo</span>
+                                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm rounded-pill ms-1" title="Detalhes">
+                                                <i class="bi bi-info-circle-fill"></i> Detalhes
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center mt-4" role="alert">
+            Nenhum cliente ativo cadastrado ainda. Use o botão "Adicionar Novo Cliente" para começar!
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+}

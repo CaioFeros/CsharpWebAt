@@ -1,0 +1,33 @@
+﻿@page
+@model CsharpWebAt.Pages.LogsModel
+@{
+    ViewData["Title"] = "Logs do Sistema";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4 text-center">Logs do Sistema</h1>
+    <p class="text-center text-muted">Aqui você pode visualizar todas as operações registradas no sistema.</p>
+
+    <h2 class="mt-4 mb-3 text-center">Logs em Memória:</h2>
+    @if (Model.CurrentMemoryLogs != null && Model.CurrentMemoryLogs.Any())
+    {
+        <div class="card shadow-sm">
+            <ul class="list-group list-group-flush">
+                @foreach (var log in Model.CurrentMemoryLogs)
+                {
+                    <li class="list-group-item">@log</li>
+                }
+            </ul>
+        </div>
+    }
+    else
+    {
+        <p class="text-center text-muted">Nenhum log em memória ainda.</p>
+    }
+
+    <h2 class="mt-5 mb-3 text-center">Verificação Adicional:</h2>
+    <div class="alert alert-info rounded-3">
+        <p class="mb-1"><strong>Console:</strong> Verifique a saída do console do Visual Studio (ou terminal) para logs em tempo real.</p>
+        <p class="mb-0"><strong>Arquivo:</strong> O arquivo `AppLogs.txt` na pasta raiz do seu projeto contém um histórico de logs persistente.</p>
+    </div>
+</div>

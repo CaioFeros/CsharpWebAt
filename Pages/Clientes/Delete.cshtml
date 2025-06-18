@@ -1,0 +1,72 @@
+﻿@page
+@model CsharpWebAt.Pages.Clientes.DeleteModel
+
+@{
+    ViewData["Title"] = "Excluir Cliente";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4 text-center text-danger">Confirmar Exclusão Lógica</h1>
+
+    <h3>Tem certeza de que deseja excluir logicamente este cliente?</h3>
+    <p class="text-danger">Esta ação marcará o cliente como inativo, mas seus dados permanecerão no sistema para fins de auditoria e histórico.</p>
+
+    @if (Model.Cliente != null)
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Cliente.Nome)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Cliente.Nome)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Cliente.Email)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Cliente.Email)
+                    </dd>
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.Cliente.DeletedAt)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Cliente.DeletedAt)
+                        @if (Model.Cliente.DeletedAt.HasValue)
+                        {
+                            <span class="badge bg-danger ms-2">Excluído Logicamente</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success ms-2">Ativo</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <form method="post">
+            <input type="hidden" asp-for="Cliente.Id" />
+            <button type="submit" class="btn btn-danger rounded-pill me-2">
+                <i class="bi bi-trash-fill me-2"></i> Confirmar Exclusão Lógica
+            </button>
+            <a asp-page="./Index" class="btn btn-secondary rounded-pill">
+                <i class="bi bi-arrow-left-short me-2"></i> Cancelar
+            </a>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-danger text-center mt-4" role="alert">
+            <h4 class="alert-heading">Cliente não encontrado!</h4>
+            <p>O cliente com o ID especificado não foi encontrado.</p>
+            <hr>
+            <a asp-page="./Index" class="btn btn-danger rounded-pill">Voltar para a Lista de Clientes</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+}

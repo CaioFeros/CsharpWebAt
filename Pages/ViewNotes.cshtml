@@ -1,0 +1,85 @@
+﻿@page
+@model CsharpWebAt.Pages.ViewNotesModel
+@{
+    ViewData["Title"] = "Sistema de Anotações";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4 text-center">Sistema de Anotações Simples</h1>
+    <p class="lead mb-4 text-center text-muted">Crie suas anotações e visualize os arquivos salvos em formato de texto.</p>
+
+    @if (!string.IsNullOrEmpty(Model.StatusMessage))
+    {
+        <div class="alert @(Model.StatusMessage.Contains("sucesso") ? "alert-success" : "alert-warning") alert-dismissible fade show rounded-3" role="alert">
+            @Model.StatusMessage
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-primary text-white rounded-top-3">
+                    <h2 class="h5 mb-0">Criar Nova Anotação</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-page-handler="CreateNote">
+                        <div class="mb-3">
+                            <label for="NoteContent" class="form-label">Conteúdo da Anotação:</label>
+                            <textarea class="form-control rounded-3" id="NoteContent" asp-for="NoteContent" rows="8" placeholder="Digite sua anotação aqui..."></textarea>
+                            <span asp-validation-for="NoteContent" class="text-danger d-block mt-1"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary rounded-pill w-100 py-2 mt-3">
+                            <i class="bi bi-plus-circle-fill me-2"></i> Salvar Anotação
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-header bg-info text-white rounded-top-3">
+                    <h2 class="h5 mb-0">Arquivos de Anotação Salvos</h2>
+                </div>
+                <div class="card-body d-flex flex-column">
+                    @if (Model.AvailableFiles != null && Model.AvailableFiles.Any())
+                    {
+                        <ul class="list-group list-group-flush flex-grow-1 overflow-auto" style="max-height: 400px;">
+                            @foreach (var file in Model.AvailableFiles)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>@file</span>
+                                    <a asp-page="/ViewNotes" asp-route-file="@file" class="btn btn-sm btn-outline-info rounded-pill">
+                                        Visualizar <i class="bi bi-eye-fill ms-1"></i>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p class="text-center text-muted">Nenhuma anotação salva ainda.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.SelectedFile) && !string.IsNullOrEmpty(Model.FileContent) && !Model.FileContent.Contains("Erro ao ler o arquivo"))
+    {
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-secondary text-white rounded-top-3">
+                <h2 class="h5 mb-0">Conteúdo de: @Model.SelectedFile</h2>
+            </div>
+            <div class="card-body bg-light">
+                <pre class="card-text p-3 border rounded-3 bg-white text-dark" style="white-space: pre-wrap; word-wrap: break-word;">@Html.Raw(Model.FileContent)</pre>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <partial name="_ValidationScriptsPartial" />
+}

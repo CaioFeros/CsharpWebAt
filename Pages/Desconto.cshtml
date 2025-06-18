@@ -1,0 +1,80 @@
+﻿@page
+@model CsharpWebAt.Pages.DescontoModel
+@{
+    ViewData["Title"] = "Cálculo de Desconto e Reserva";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4 text-center">Cálculo de Desconto e Valor Total de Reserva</h1>
+    <p class="text-center text-muted">Esta página demonstra o uso de Delegates e Funcs em C#.</p>
+
+    <!-- Formulário para Cálculo de Desconto -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-primary text-white rounded-top-3">
+            <h2 class="card-title h5 mb-0">1. Cálculo de Desconto de Hospedagem (Delegate)</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-text">O cliente que comprar 3 ou mais dias de hospedagem receberá um desconto de 10%.</p>
+            <form method="post" asp-page-handler="CalcularDesconto">
+                <div class="mb-3">
+                    <label for="PrecoDiaria" class="form-label">Preço da Diária Original:</label>
+                    <input type="number" step="0.01" class="form-control rounded-3" id="PrecoDiaria" asp-for="PrecoDiaria" required placeholder="Ex: 100.00">
+                </div>
+                <div class="mb-3">
+                    <label for="NumeroDiasHospedagem" class="form-label">Número de Dias de Hospedagem:</label>
+                    <input type="number" class="form-control rounded-3" id="NumeroDiasHospedagem" asp-for="NumeroDiasHospedagem" required min="1" value="1">
+                </div>
+                <button type="submit" class="btn btn-success rounded-pill w-100 py-2 mt-3">
+                    <i class="bi bi-percent me-2"></i> Calcular Desconto
+                </button>
+            </form>
+
+            @if (Model.PrecoFinalComDesconto > 0)
+            {
+                <div class="mt-4 alert alert-success rounded-3" role="alert">
+                    <h4 class="alert-heading">Resultado do Desconto:</h4>
+                    <p>Preço da Diária Original: R$ @Model.PrecoDiaria.ToString("F2")</p>
+                    <p>Número de Dias: @Model.NumeroDiasHospedagem</p>
+                    <p class="h5">Preço Final com Desconto: <strong class="text-success">R$ @Model.PrecoFinalComDesconto.ToString("F2")</strong></p>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Formulário para Cálculo de Valor Total da Reserva (Func com Lambda) -->
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-info text-white rounded-top-3">
+            <h2 class="card-title h5 mb-0">2. Cálculo do Valor Total da Reserva (Func com Lambda)</h2>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Calcule o valor total da reserva com base no valor da diária e no número de diárias.</p>
+            <form method="post" asp-page-handler="CalcularReserva">
+                <div class="mb-3">
+                    <label for="ValorDiariaReserva" class="form-label">Valor da Diária para Reserva:</label>
+                    <input type="number" step="0.01" class="form-control rounded-3" id="ValorDiariaReserva" asp-for="ValorDiariaReserva" required placeholder="Ex: 120.50">
+                </div>
+                <div class="mb-3">
+                    <label for="NumeroDiariasReserva" class="form-label">Número de Diárias da Reserva:</label>
+                    <input type="number" class="form-control rounded-3" id="NumeroDiariasReserva" asp-for="NumeroDiariasReserva" required min="1" value="1">
+                </div>
+                <button type="submit" class="btn btn-primary rounded-pill w-100 py-2 mt-3">
+                    <i class="bi bi-cash-stack me-2"></i> Calcular Valor Total
+                </button>
+            </form>
+
+            @if (Model.ValorTotalCalculado > 0)
+            {
+                <div class="mt-4 alert alert-primary rounded-3" role="alert">
+                    <h4 class="alert-heading">Resultado do Valor Total da Reserva:</h4>
+                    <p>Valor da Diária: R$ @Model.ValorDiariaReserva.ToString("F2")</p>
+                    <p>Número de Diárias: @Model.NumeroDiariasReserva</p>
+                    <p class="h5">Valor Total da Reserva: <strong class="text-primary">R$ @Model.ValorTotalCalculado.ToString("F2")</strong></p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+}

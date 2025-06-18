@@ -1,0 +1,81 @@
+﻿@page "{id:int}"
+@model CsharpWebAt.Pages.Clientes.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalhes do Cliente";
+}
+
+<div class="container py-4">
+    <h1 class="mb-4 text-center">Detalhes do Cliente</h1>
+
+    @if (Model.Cliente != null)
+    {
+        <div class="card shadow-sm mb-4">
+            <div class="card-header bg-primary text-white rounded-top-3">
+                <h2 class="h5 mb-0">Informações do Cliente: <span class="fw-bold">@Model.Cliente.Nome</span></h2>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-3 text-muted">
+                        @Html.DisplayNameFor(model => model.Cliente.Nome)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Cliente.Nome)
+                    </dd>
+                    <dt class="col-sm-3 text-muted">
+                        @Html.DisplayNameFor(model => model.Cliente.Email)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.Cliente.Email)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+
+        <div class="card shadow-sm mt-4">
+            <div class="card-header bg-secondary text-white rounded-top-3">
+                <h2 class="h5 mb-0">Reservas do Cliente</h2>
+            </div>
+            <div class="card-body">
+                @if (Model.Cliente.Reservas != null && Model.Cliente.Reservas.Any())
+                {
+                    <ul class="list-group list-group-flush">
+                        @foreach (var reserva in Model.Cliente.Reservas)
+                        {
+                            <li class="list-group-item">
+                                Pacote: @reserva.PacoteTuristico?.Titulo <br />
+                                Data da Reserva: @reserva.DataReserva.ToString("dd/MM/yyyy")
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <p class="text-muted">Este cliente não possui reservas.</p>
+                }
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a asp-page="./Edit" asp-route-id="@Model.Cliente.Id" class="btn btn-warning rounded-pill me-2">
+                <i class="bi bi-pencil-fill me-2"></i> Editar
+            </a>
+            <a asp-page="./Index" class="btn btn-secondary rounded-pill">
+                <i class="bi bi-arrow-left-short me-2"></i> Voltar para a Lista
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger text-center mt-4" role="alert">
+            <h4 class="alert-heading">Cliente não encontrado!</h4>
+            <p>O cliente com o ID especificado não foi encontrado.</p>
+            <hr>
+            <a asp-page="./Index" class="btn btn-danger rounded-pill">Voltar para a Lista de Clientes</a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+}
